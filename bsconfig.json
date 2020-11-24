@@ -1,0 +1,18 @@
+{
+  "name": "@softwarefactory-project/zuul-results-gerrit-plugin",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": ["src"],
+  "bsc-flags": ["-bs-super-errors", "-bs-no-version-header"],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "bs-dependencies": ["@softwarefactory-project/re-gerrit"],
+  "bs-dev-dependencies": [],
+  "refmt": 3
+}
