@@ -1,0 +1,24 @@
+{
+  "name": "@softwarefactory-project/zuul-results-gerrit-plugin",
+  "version": "0.1.0",
+  "description": "Gerrit client",
+  "files": ["README.md", "LICENSE", "dist/ZuulResultsPlugin.bs.js"],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/softwarefactory-project/zuul-results-gerrit-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://softwarefactory-project.io/r/software-factory/zuul-results-gerrit-plugin.git"
+  },
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "test": "bsb -make-world && node tests/Spec.bs.js"
+  },
+  "keywords": ["gerrit", "zuul", "polygerrit", "rescript", "bucklescript"],
+  "dependencies": {
+    "@softwarefactory-project/re-gerrit": "^0.1.0"
+  },
+  "devDependencies": {
+    "bs-platform": "^8.2.0"
+  }
+}
