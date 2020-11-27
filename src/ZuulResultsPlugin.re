@@ -72,10 +72,15 @@ let jobResult: (option(string), string, string) => elem = [%raw
      return span;
   }|}
 ];
+let isDarkMode: unit => bool = [%raw
+  "() => document.getElementById('dark-theme') === null"
+];
 
 // Helper function to create the cells
+let backgroundColor: unit => string =
+  () => "background-color: " ++ (isDarkMode() ? "#dcdcdc;" : "#3b3d3f");
 let headerCell = (txt: string): cell =>
-  "background-color: #dcdcdc;"->Some->createCell(txt->textCell);
+  backgroundColor()->Some->createCell(txt->textCell);
 let bodyCell: elem => cell = None->createCell;
 let addHeaderRow = (table: table, name: string, date: string): unit =>
   table->addRow([|name->headerCell, date->headerCell|]);
@@ -112,6 +117,8 @@ let showCallback = (change: Gerrit.Change.t): unit => {
   Js.log2("Zuul Result of change: ", change);
   change
   ->Gerrit.CI.Results.fromChange
+  // Put oldest result at the top
+  ->Belt.Array.reverse
   ->Belt.Array.map("zuulResult"->createTable->showResults)
   ->ignore;
 };
