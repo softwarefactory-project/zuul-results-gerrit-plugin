@@ -72,10 +72,15 @@ let jobResult: (option(string), string, string) => elem = [%raw
      return span;
   }|}
 ];
+let isDarkMode: unit => bool = [%raw
+  "() => document.getElementById('dark-theme') === null"
+];
 
 // Helper function to create the cells
+let backgroundColor: unit => string =
+  () => "background-color: " ++ (isDarkMode() ? "#dcdcdc;" : "#3b3d3f");
 let headerCell = (txt: string): cell =>
-  "background-color: #dcdcdc;"->Some->createCell(txt->textCell);
+  backgroundColor()->Some->createCell(txt->textCell);
 let bodyCell: elem => cell = None->createCell;
 let addHeaderRow = (table: table, name: string, date: string): unit =>
   table->addRow([|name->headerCell, date->headerCell|]);
@@ -86,20 +91,23 @@ let addResultRow = (table, name, url, color, result, time): unit =>
   |]);
 
 // The zuul result plugin implementation:
-let showBuild = (table: table, build: Gerrit.CI.Result.build): unit => {
+let showBuild = (table: table, build: Gerrit.CI.CIResult.build): unit => {
   table->addResultRow(
     build.job,
     build.url,
-    build.result->Gerrit.CI.Result.color,
+    build.result->Gerrit.CI.CIResult.color,
     build.result,
     build.time,
   );
 };
+let getPipeline =
+  fun
+  | Some(pipeline) => " " ++ pipeline
+  | _ => "";
 let showResults = (table: table, results: Gerrit.CI.Results.t): unit => {
   table->addHeaderRow(
     results.latests.name
-    ++ " "
-    ++ results.latests.pipeline
+    ++ results.latests.pipeline->getPipeline
     ++ (
       results.count > 1
         ? " (" ++ string_of_int(results.count) ++ " rechecks)" : ""
