@@ -48,6 +48,11 @@ Make sure to read about [Reason][rescript-lang] too.
 
 ## Changes
 
+### 0.1.1
+
+- Support multiple CI result with optional pipeline.
+- Detect dark-mode and adapt the colors.
+
 ### 0.1.0
 
 - Initial release
