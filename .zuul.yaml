@@ -1,7 +1,7 @@
 - project:
     check: &jobs
       jobs:
-        - shake-factory-npm-test:
+        - npm-test:
             required-projects:
               - software-factory/re-gerrit
     gate: *jobs
