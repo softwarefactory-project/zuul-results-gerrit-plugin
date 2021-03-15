@@ -28,6 +28,7 @@ let createTable: string => table = [%raw
     let container = root.querySelector('#' + name);
     if (container === null) {
       container = document.createElement("table");
+      container.id = name;
       root.appendChild(container);
     } else {
       container.innerHTML = "";
