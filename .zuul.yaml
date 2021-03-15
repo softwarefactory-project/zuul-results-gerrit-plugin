@@ -1,6 +1,7 @@
 - project:
     check: &jobs
       jobs:
+        - sf-rpm-build
         - pnpm-test:
             required-projects:
               - software-factory/re-gerrit
