@@ -10,9 +10,9 @@ and restart the service.
 ## Build from source
 
 ```
-$ yarn add parcel
+$ yarn add parcel@1.12.3
 $ yarn build
-$ npx parcel build src/ZuulResultsPlugin.re
+$ npx parcel build src/ZuulResultsPlugin.bs.js
 ```
 
 ## Contribute
@@ -22,7 +22,7 @@ Get started by running:
 
 ```sh
 git clone https://github.com/softwarefactory-project/zuul-results-gerrit-plugin
-cd re-ansi
+cd zuul-results-gerrit-plugin
 yarn install
 yarn start
 ```
@@ -47,6 +47,10 @@ npx parcel build src/ZuulResultsPlugin.bs.js && \
 Make sure to read about [Reason][rescript-lang] too.
 
 ## Changes
+
+### 0.1.2
+
+- Set the table id so that it is cleared between reload.
 
 ### 0.1.1
 
