@@ -1,10 +1,15 @@
 - project:
     check: &jobs
       jobs:
+        - pnpm-rpmbuild:
+            required-projects:
+              - software-factory/re-gerrit
         - pnpm-test:
             required-projects:
               - software-factory/re-gerrit
     gate: *jobs
     release:
       jobs:
-        - sf-rpm-publish
+        - pnpm-rpm-publish:
+            required-projects:
+              - software-factory/re-gerrit
