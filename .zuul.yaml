@@ -1,7 +1,12 @@
 - project:
     check: &jobs
       jobs:
-        - npm-test:
+        - pnpm-test:
             required-projects:
               - software-factory/re-gerrit
     gate: *jobs
+    release:
+      jobs:
+        - pnpm-rpm-publish:
+            required-projects:
+              - software-factory/re-gerrit
