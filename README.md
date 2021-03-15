@@ -10,9 +10,8 @@ and restart the service.
 ## Build from source
 
 ```
-$ yarn add parcel@1.12.3
-$ yarn build
-$ npx parcel build src/ZuulResultsPlugin.bs.js
+$ pnpm install --shamefully-hoist
+$ pnpm dist
 ```
 
 ## Contribute
@@ -23,8 +22,7 @@ Get started by running:
 ```sh
 git clone https://github.com/softwarefactory-project/zuul-results-gerrit-plugin
 cd zuul-results-gerrit-plugin
-yarn install
-yarn start
+pnpm start
 ```
 
 Apply change to a running gerrit service by:
@@ -39,14 +37,18 @@ Enable remote plugin reload by adding to gerrit.config:
 Then reload using:
 
 ```
-npx parcel build src/ZuulResultsPlugin.bs.js && \
+pnpm dist && \
   cp dist/ZuulResultsPlugin.bs.js /var/gerrit/plugins/zuul-results.js && \
   ssh -p 29418 admin@localhost gerrit plugin reload zuul-results
 ```
 
-Make sure to read about [Reason][rescript-lang] too.
+Make sure to read about [ReScript][rescript-lang] too.
 
 ## Changes
+
+### 0.2.0
+
+- Replace npm by pnpm.
 
 ### 0.1.2
 

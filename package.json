@@ -1,6 +1,6 @@
 {
   "name": "@softwarefactory-project/zuul-results-gerrit-plugin",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Gerrit plugin to display zuul results",
   "files": [
     "README.md",
@@ -16,7 +16,9 @@
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
-    "test": "bsb -make-world"
+    "dist": "npm build && parcel build ./src/ZuulResultsPlugin.bs.js",
+    "test": "bsb -make-world",
+    "clean": "find src/ -name '*.bs.js' -delete && rm -Rf lib"
   },
   "keywords": [
     "gerrit",
@@ -29,6 +31,7 @@
     "@softwarefactory-project/re-gerrit": "../re-gerrit/"
   },
   "devDependencies": {
-    "bs-platform": "^8.2.0"
+    "bs-platform": "^8.2.0",
+    "parcel": "1.12.3"
   }
 }
